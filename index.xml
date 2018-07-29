@@ -13,10 +13,10 @@
     
     <item>
       <title>C#</title>
-      <link>https://tomatomaster.github.io/posts/c#/</link>
+      <link>https://tomatomaster.github.io/posts/csharp/</link>
       <pubDate>Sun, 29 Jul 2018 21:46:49 +0900</pubDate>
       
-      <guid>https://tomatomaster.github.io/posts/c#/</guid>
+      <guid>https://tomatomaster.github.io/posts/csharp/</guid>
       <description>C#メモ リテラル C#の整数リテラルはint uint long ulongの順に当てはめられる。 ## ショートサーキット評価 pが```true```ならばqは評</description>
     </item>
     

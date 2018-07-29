@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C# | post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://tomatomaster.github.io/">/home/post</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/post/">~/archives</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/about/">~/about</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">C#</span></h1>
+
+<h2 class="date">2018/07/29</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<h1 id="c-メモ">C#メモ</h1>
+
+<h2 id="リテラル">リテラル</h2>
+
+<p>C#の整数リテラルはint uint long ulongの順に当てはめられる。</p>
+
+<p>## ショートサーキット評価</p>
+
+<pre><code class="language-p">pが```true```ならばqは評価せずとも、```true```
+そこで登場するのが短絡評価（サーキット評価)。  
+サーキット評価は ```p||q```と記述し、pで式の評価が決まるならば、qの評価を行わない。
+
+## 暗黙的型変換
+
+```C#
+
+//コンパイル可能
+long longValue = 123131314;
+double doubleValue = longValue;
+
+//コンパイル失敗
+long longValue = 123131314.1231;
+double doubleValue = longValue;
+
+//コンパイル失敗
+decimal dValue = 12313;
+float  f = dValue;
+double d = dValue;
+
+</code></pre>
+
+<p>### decimal</p>
+
+<pre><code class="language-C#">
+decimal dValue = 0.01;
+int iValue = 100
+double doubleValue = 200.2;
+float fValue 300.3;
+
+// iValueはdecimalとして評価される。
+var sum = dValue + iValue;
+// エラー
+var sum = dValue + doubleValue;
+// エラー
+var sum = dValue + fValue;
+
+</code></pre>
+
+<h3 id="double">double</h3>
+
+<p>decimalがオペランドに含まれていない場合、もう一方のオペランドはdoubleに変換される。</p>
+
+<h3 id="float">float</h3>
+
+<p>decimal, floatがオペランドに含まれていない場合、もう一方のオペランドはfloatに変換される。</p>
+
+<h3 id="ulong">ulong</h3>
+
+<p>上記の場合以外、もう一方のオペランドはulongに変換される。
+ただし、符号付型(sbyte, short, int long)の場合はエラーが発生する。</p>
+
+<h3 id="long">long</h3>
+
+<p>上記以外の場合、もう一方のオペランドはlongに変換される。</p>
+
+<h3 id="uint">uint</h3>
+
+<p>上記以外の場合、一方のオペランドがsbyte, short, intの場合両オペランドがlong型に変換される。</p>
+
+<h3 id="uint-1">uint</h3>
+
+<p>上記以外の場合、もう一方のオペランドもuintに変換される。</p>
+
+<h3 id="int">int</h3>
+
+<p>上記以外の場合、もう一方のオペランドはintに変換される。</p>
+
+<h3 id="注意点">注意点</h3>
+
+<pre><code class="language-C#">
+byte b = 10;
+int i =  b + b;
+// intに変換されるためキャストが必要
+byte b2 = (byte)(b+ b);
+char c = (char)(b+ b);
+
+</code></pre>
+
+<p>単項演算子でも型変換は発生する。</p>
+
+<pre><code class="language-C#">
+byte b = 10;
+int i = -b;
+
+uint ui = 10;
+//uintはlongに変換される。
+long l = -10;
+
+</code></pre>
+
+<h2 id="switch">Switch</h2>
+
+<p>C#のSwitchは言語仕様で、あるcaseで処理が行われたら必ずbreakしなければならないと決められている。defaultでもこれは必須となっている。</p>
+
+<h2 id="c-のガベージコレクション">C#のガベージコレクション</h2>
+
+<p>そのインスタンスがどこからも参照されなくなったらガベージコレクトされる。</p>
+
+<h2 id="デストラクタ">デストラクタ</h2>
+
+<pre><code class="language-C#">
+~ クラス名() {
+
+}
+
+</code></pre>
+
+<p>ガベージコレクトされる際に呼ばれる。Javaと同様必ず呼び出される保証はないので、基本使用しない。</p>
+
+<h2 id="多次元配列">多次元配列</h2>
+
+<pre><code class="language-C#">
+int[,] table = new int[10, 20];
+int[,,] tripleTable = new int[10, 20, 30];
+
+</code></pre>
+
+<h3 id="ジャグ配列">ジャグ配列</h3>
+
+<pre><code class="language-C#">
+int[3][] jagged = new int[3][];
+jagged[0] = new int[2];
+jagged[1] = new int[3];
+jagged[2] = new int[4];
+
+</code></pre>
+
+<p>jagged<br />
+[][]<br />
+[][][]<br />
+[][][][]</p>
+
+</main>
+
+<footer>
+  
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+ 
+</footer>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+  </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>
