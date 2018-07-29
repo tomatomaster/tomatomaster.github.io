@@ -6,10 +6,19 @@
     <description>Recent content in Posts on post</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 10 Jul 2018 22:45:44 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 29 Jul 2018 21:46:49 +0900</lastBuildDate>
     
 	<atom:link href="https://tomatomaster.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C#</title>
+      <link>https://tomatomaster.github.io/posts/c#/</link>
+      <pubDate>Sun, 29 Jul 2018 21:46:49 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/c#/</guid>
+      <description>C#メモ リテラル C#の整数リテラルはint uint long ulongの順に当てはめられる。 ## ショートサーキット評価 pが```true```ならばqは評</description>
+    </item>
     
     <item>
       <title>Udacity3</title>
