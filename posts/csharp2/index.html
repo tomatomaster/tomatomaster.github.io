@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
   <head>
-	<meta name="generator" content="Hugo 0.42.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>post | post</title>
+    <title>Csharp2 | post</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     
@@ -18,7 +17,7 @@
     <ul>
       
       
-      <li class="pull-left current">
+      <li class="pull-left ">
         <a href="https://tomatomaster.github.io/">/home/post</a>
       </li>
       
@@ -49,44 +48,78 @@
   <body>
     <br/>
 
+<div class="article-meta">
+<h1><span class="title">Csharp2</span></h1>
+
+<h2 class="date">2018/07/31</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
 
 
 
+<main>
 
 
-<ul>
-  
-  <li>
-    <span class="date">2018/07/31</span>
-    <a href="/posts/csharp2/">Csharp2</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/07/29</span>
-    <a href="/posts/csharp/">C#</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/07/10</span>
-    <a href="/posts/udacity3/">Udacity3</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/06/26</span>
-    <a href="/posts/openjdk/">Udacity[2日目]</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/06/25</span>
-    <a href="/posts/udacity/">Udacity 1日目</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/06/17</span>
-    <a href="/posts/%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/">ブログはじめました</a>
-  </li>
-  
-</ul>
+<h1 id="2回目">2回目</h1>
+
+<h2 id="string">String</h2>
+
+<p>C#のString型に対する==は値の比較となる。
+Javaの様に参照の比較ではない。</p>
+
+<pre><code class="language-C#">//内容は等しいが、異なるオブジェクトのStringを2つ作る
+string a = new string(new char[] { 'h', 'e', 'l', 'l', 'o' });
+string b = new string(new char[] { 'h', 'e', 'l', 'l', 'o' });
+
+Console.WriteLine(a == b); //true
+Console.WriteLine(a.Equals(b)); //true
+</code></pre>
+
+<h2 id="ビット演算">ビット演算</h2>
+
+<p>&amp;(論理積)は主にどのビットが立っているのか調べる場合に使用される。逆に|(論理和)はビットを立てたい場合に使用される。</p>
+
+<pre><code class="language-C#">using System;
+
+class BitsInByte {
+    int t;
+    byte val;
+
+    val = 123;
+    for(t=128; t &gt; 0; t/2) {
+        if((val&amp;t) != 0){
+            Console.Write(&quot;1 &quot;);
+        } else {
+            Console.Write(&quot;0 &quot;);
+        }
+    }
+
+    for(t=128; t &gt; 0; 1&gt;&gt;t) {
+        if((val&amp;t) != 0){
+            Console.Write(&quot;1 &quot;);
+        } else {
+            Console.Write(&quot;0 &quot;);
+        }
+    }
+    //10000000
+    //01000000
+    //...
+    //00000001
+}
+</code></pre>
+
+<p>シフトした結果、溢れたビットの情報は消えてしまう。
+循環はしない。</p>
+
+<p>符号付値がビット演算を行っても符号が変わらない様に符号付ビット(左端)は変更されない。</p>
+
+</main>
 
 <footer>
   

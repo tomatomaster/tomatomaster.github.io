@@ -6,10 +6,19 @@
     <description>Recent content on post</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 29 Jul 2018 21:46:49 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 31 Jul 2018 23:38:50 +0900</lastBuildDate>
     
 	<atom:link href="https://tomatomaster.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Csharp2</title>
+      <link>https://tomatomaster.github.io/posts/csharp2/</link>
+      <pubDate>Tue, 31 Jul 2018 23:38:50 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/csharp2/</guid>
+      <description>2回目 String C#のString型に対する==は値の比較となる。 Javaの様に参照の比較ではない。 //内容は等しいが、異なるオブジェクトのStr</description>
+    </item>
     
     <item>
       <title>C#</title>
