@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
   <head>
-	<meta name="generator" content="Hugo 0.42.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>post | post</title>
+    <title>C#3 | post</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     
@@ -18,7 +17,7 @@
     <ul>
       
       
-      <li class="pull-left current">
+      <li class="pull-left ">
         <a href="https://tomatomaster.github.io/">/home/post</a>
       </li>
       
@@ -49,49 +48,57 @@
   <body>
     <br/>
 
+<div class="article-meta">
+<h1><span class="title">C#3</span></h1>
+
+<h2 class="date">2018/08/01</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
 
 
 
+<main>
 
 
-<ul>
-  
-  <li>
-    <span class="date">2018/08/01</span>
-    <a href="/posts/csharp3/">C#3</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/07/31</span>
-    <a href="/posts/csharp2/">C#2</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/07/29</span>
-    <a href="/posts/csharp/">C#</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/07/10</span>
-    <a href="/posts/udacity3/">Udacity 3</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/06/26</span>
-    <a href="/posts/openjdk/">Udacity 2</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/06/25</span>
-    <a href="/posts/udacity/">Udacity 1</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/06/17</span>
-    <a href="/posts/%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AF%E3%81%98%E3%82%81%E3%81%BE%E3%81%97%E3%81%9F/">ブログはじめました</a>
-  </li>
-  
-</ul>
+<h1 id="c-メモ">C#メモ</h1>
+
+<h2 id="アクセス修飾子">アクセス修飾子</h2>
+
+<p>C#はアクセス修飾子をつけないと<code>private</code>指定になる。</p>
+
+<h2 id="メソッドの引数-オブジェクトの参照">メソッドの引数（オブジェクトの参照）</h2>
+
+<p>C#はオブジェクトを参照している変数をメソッドの引数として渡して、メソッド内で変数を操作すると、呼び出し元変数が参照しているオブジェクトも操作された状態になっている。
+変数はコピーだが、そのコピーの参照先は呼び出し元と同一であるため、このような挙動になる。ただし、コピーなのでメソッド内で別のオブジェクトを参照しても、呼び出し元の参照先は変わらない。</p>
+
+<pre><code class="language-C#">
+void Test(Test t) {
+    t.a = 100;
+    return
+}
+
+void Test2(Test t) {
+    t = new Fuga();
+    return
+}
+
+var hoge = new Test()
+hoge.a = 0;
+Test(hoge);
+//hoge.aは100になる。
+
+Test2(hoge)
+//hogeはTestオブジェクトを参照している。Fugaオブジェクトは参照していない。
+
+</code></pre>
+
+</main>
 
 <footer>
   
