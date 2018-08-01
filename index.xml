@@ -26,7 +26,7 @@
       <pubDate>Tue, 31 Jul 2018 23:38:50 +0900</pubDate>
       
       <guid>https://tomatomaster.github.io/posts/csharp2/</guid>
-      <description>2回目 String C#のString型に対する==は値の比較となる。 Javaの様に参照の比較ではない。 //内容は等しいが、異なるオブジェクトのStr</description>
+      <description>C#メモ String C#のString型に対する==は値の比較となる。 Javaの様に参照の比較ではない。 //内容は等しいが、異なるオブジェクトのSt</description>
     </item>
     
     <item>
