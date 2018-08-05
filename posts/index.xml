@@ -6,10 +6,19 @@
     <description>Recent content in Posts on post</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 01 Aug 2018 22:56:21 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 02 Aug 2018 23:49:02 +0900</lastBuildDate>
     
 	<atom:link href="https://tomatomaster.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Csharp4</title>
+      <link>https://tomatomaster.github.io/posts/csharp4/</link>
+      <pubDate>Thu, 02 Aug 2018 23:49:02 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/csharp4/</guid>
+      <description>C#メモ ref/out C#のメソッドの引数で渡された値や参照は通常コピーされてメソッド内で使用される。そのため、メソッド内で引数に対して操作した内容はメ</description>
+    </item>
     
     <item>
       <title>C#3</title>

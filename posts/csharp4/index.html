@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Csharp4 | post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://tomatomaster.github.io/">/home/post</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/post/">~/archives</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/about/">~/about</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Csharp4</span></h1>
+
+<h2 class="date">2018/08/02</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<h1 id="c-メモ">C#メモ</h1>
+
+<h2 id="ref-out">ref/out</h2>
+
+<p>C#のメソッドの引数で渡された値や参照は通常コピーされてメソッド内で使用される。そのため、メソッド内で引数に対して操作した内容はメソッド外のスコープに反映されない。<br />
+ポインタのようにメソッド内で引数に対する参照を渡し、操作したい場合は<code>ref</code>修飾子を使用する。<br />
+refを使用する場合は、必ず参照に値が代入されている必要がある。しかし、メソッド引数に結果を表す変数(isOpenなど)を渡し、メソッドの実行結果を確認したい場合がある。このような引数は実行前には状態が確定しないため、初期化されていない。<br />
+この場合は<code>out</code>修飾子を使用する。</p>
+
+<h2 id="オーバーロード">オーバーロード</h2>
+
+<h3 id="戻り値-の型が異なるだけでは不十分">戻り値の型が異なるだけでは不十分</h3>
+
+<p>同一引数を持ち、戻り値の型が異なるメソッドはオーバーロードはみなせない。</p>
+
+<h3 id="暗黙的な型変換">暗黙的な型変換</h3>
+
+<p>byte型、short型はint型に昇格される。
+float型はdouble型に昇格される。
+ただし、byte, short, floatを引数にとるオーバーロードメソッドが定義されている場合、そのメソッドが適用される。</p>
+
+<pre><code class="language-C#">void Test(int a) {
+
+}
+
+static void Main() {
+    byte b = 10;
+    Test(b); //byteがintに昇格される。
+}
+</code></pre>
+
+<h3 id="ref-outはオバーロードの対象か">ref/outはオバーロードの対象か？</h3>
+
+<p>下記オーバーロードは可能</p>
+
+<pre><code class="language-C#">void Test(int a)
+void Test(ref int a)
+</code></pre>
+
+<p>下記オーバーロードは無効</p>
+
+<pre><code class="language-C#">void Test(ref int a)
+void Test(out int a)
+</code></pre>
+
+<h2 id="静的メソッド">静的メソッド</h2>
+
+<p>静的メソッドはインスタンスメソッドを呼び出すことはできない。静的メソッドは特定のインスタンスに紐づくものではないため。</p>
+
+<p>静的メソッドはstaticなデータのみにアクセスできる。これも上記同様、静的メソッドは特定のインスタンスに紐づく処理ではないため。</p>
+
+<h2 id="静的コンストラクター">静的コンストラクター</h2>
+
+<p>クラスがロードされた際に自動的に呼び出される。</p>
+
+</main>
+
+<footer>
+  
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+ 
+</footer>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+  </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>
