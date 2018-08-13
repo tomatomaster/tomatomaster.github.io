@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C# | post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://tomatomaster.github.io/">/home/post</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/post/">~/archives</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/about/">~/about</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">C#</span></h1>
+
+<h2 class="date">2018/08/13</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<h1 id="c-メモ">C#メモ</h1>
+
+<h2 id="演算子のオーバーロード">演算子のオーバーロード</h2>
+
+<h3 id="書式">書式</h3>
+
+<pre><code class="language-C#">
+//単行演算子
+public static MyClass oeprator - (MyClass a1){
+ //hogehoge
+}
+
+//2項演算子
+public static MyClass oeprator + (MyClass a1, MyClass a2){
+ //hogehoge
+}
+</code></pre>
+
+<p>単行演算子のオペランドはその定義クラス。二項演算子のオペランドはそのどちらかが、その定義クラス。演算子の引数にはref/out修飾子を使用することはできない。</p>
+
+<pre><code class="language-C#">①
+public static MyClass operator + (MyClass a1, int a2)
+
+②
+public static MyClass operator + (int a1, MyClass a2)
+</code></pre>
+
+<p>これらは別物。したがって、①を定義しただけでは下記計算を行うことはできない。</p>
+
+<pre><code class="language-C#">
+MyClass a1 = new MyClass();
+var a3 = 1 + a1;
+
+</code></pre>
+
+<pre><code class="language-==```">
+##インデクサー
+
+```C#
+
+要素型 this [int インデックス] {
+
+    get {
+        // a = Myclass[i]の時に呼び出される。
+    }
+
+    set {
+        // MyClass[i] = aの時に呼び出される。
+    }
+}
+
+インデクサーはgetだけを定義する。setだけを定義することもできる。
+
+
+多次元のインデクサーを定義することもできる。
+
+```C#
+
+要素型 this [int インデックス, int インデックス] {
+
+    get {
+        // a = Myclass[i]の時に呼び出される。
+    }
+
+    set {
+        // MyClass[i] = aの時に呼び出される。
+    }
+}
+
+</code></pre>
+
+<p>インデクサーは配列の様に記憶領域を持たない。
+インデクサーは[インデックス]形式で呼ばれるメソッドに近い。
+そのため、ref/outのパラメーターとして、メソッドに渡すことはできない。</p>
+
+<h2 id="プロパティ">プロパティ</h2>
+
+<pre><code class="language-C#">
+class MyClass {
+    private int prop;
+
+    int PropertyName {
+        get {
+            return prop;
+        }
+
+        set {
+            if(value &gt; 0)
+                prop = value;
+        }
+    }
+}
+
+public static Main() {
+    var my = new MyClass();
+    my.PropertyName = 10; // PropertyNameのsetが呼び出される。
+    var result = my.PropertyName; // PropertyNameのgetが呼び出される。
+}
+
+</code></pre>
+
+<h2 id="自動実装するプロパティ">自動実装するプロパティ</h2>
+
+<p>C# 3.0から登場した機能</p>
+
+<pre><code class="language-C#">
+型 名前 {get; set;}
+
+</code></pre>
+
+<p>と宣言することで、プロパティとして扱うことができる。<br />
+getとsetは一緒に宣言する必要がある。<br />
+get/setの制御を行うことはできない。
+プロパティにしておくことで、後々制御したい場合に拡張できる。
+他にもメリットがあるらしいが、とりあえずここではここまで。</p>
+
+<p>アクセサーに修飾子をつけることができる。 これは自動実装するプロパティでも同様。</p>
+
+<pre><code class="language-C#">
+class MyClass {
+    int maximum;
+
+    public int Max {
+        get {
+            return maximum;
+        }
+        private set {
+            if(value &lt; 0) maximum = -value;
+            else maximum = value;
+        }
+    }
+}
+
+public int Max { get; private set; }
+
+</code></pre>
+
+</main>
+
+<footer>
+  
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+ 
+</footer>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+  </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on post</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 02 Aug 2018 23:49:02 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 13 Aug 2018 08:25:24 +0900</lastBuildDate>
     
 	<atom:link href="https://tomatomaster.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C#</title>
+      <link>https://tomatomaster.github.io/posts/csharp5/</link>
+      <pubDate>Mon, 13 Aug 2018 08:25:24 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/csharp5/</guid>
+      <description>C#メモ 演算子のオーバーロード 書式 //単行演算子 public static MyClass oeprator - (MyClass a1){ //hogehoge } //2項演算子 public static MyClass oeprator + (MyClass a1, MyClass a2){ //hogehoge } 単行演算子のオペランドはその定義</description>
+    </item>
     
     <item>
       <title>C#</title>
