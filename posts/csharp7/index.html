@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Csharp7 | post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://tomatomaster.github.io/">/home/post</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/post/">~/archives</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/about/">~/about</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Csharp7</span></h1>
+
+<h2 class="date">2018/08/16</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<h1 id="c-メモ">C#メモ</h1>
+
+<h2 id="デリゲート">デリゲート</h2>
+
+<p>メソッド専用のインタフェースみたいなもの<br />
+戻り値と引数がデリゲート宣言と一致していれば、デリゲート変数に代入することができる。</p>
+
+<pre><code class="language-C#">
+delegate string StrMod(string str);
+
+public string ReplaceSpaces(string a) {
+    retunr a.Replace(' ', '-');
+}
+
+static void Main() {
+    StrMod strOp = ReplaceSpaces;
+    strOp(&quot;test&quot;);
+}
+
+</code></pre>
+
+<h3 id="デリゲートのマルチキャスト">デリゲートのマルチキャスト</h3>
+
+<p>デリゲートは連鎖することができる。（デリゲートのマルチキャスト）</p>
+
+<pre><code class="language-C#">
+using System;
+
+delegate void StrMod(ref string str);
+
+class StringOps
+{
+    static void ReplacesSpaces(ref string a)
+    {
+        a = a.Replace(' ', '-');
+    }
+
+    static void Reverse(ref string a)
+    {
+        string temp = &quot;&quot;;
+        int i, j;
+
+        for (j = 0, i = a.Length - 1; i &gt;= 0; i--, j++)
+        {
+            temp += a[i];
+        }
+
+        a = temp;
+    }
+
+    static void Main()
+    {
+        StrMod strOp;
+        strOp = ReplacesSpaces;
+        strOp += Reverse;
+        var str = &quot;This is a test&quot;;
+        Console.WriteLine(str);
+        strOp(ref str);
+        Console.WriteLine(str);
+    }
+}
+
+</code></pre>
+
+<h3 id="デリゲートを使用する理由">デリゲートを使用する理由</h3>
+
+<p>デリゲート変数に代入されるメソッドはコンパイル時ではなく、実行時に決定される。そのため、プラグインなどの開発に利用できる。</p>
+
+<h2 id="匿名メソッド">匿名メソッド</h2>
+
+<pre><code class="language-C#">
+delegate void CountIt();
+
+CountIt count = delegate {
+    //処理
+}
+
+delegate void CountIt(int i);
+
+CountIt = delegate (int end) {
+    //処理
+}
+
+//　匿名メソッドは値を返すこともできる。
+delegate int CountIt(int i);
+
+CountIt = delegate (int end) {
+    int result;
+    //処理
+    return result;
+}
+
+
+</code></pre>
+
+<h3 id="キャプチャ">キャプチャ</h3>
+
+<p>匿名メソッドを囲んでいるスコープの変数にアクセスすることができる。この変数は匿名メソッドにキャプチャされていると言う。匿名メソッドを参照しているデリゲートインスタンスがGC
+されるまで、キャプチャされたインスタンスはGCされない。</p>
+
+<pre><code class="language-C#">
+int hogehoge;
+delegate int CountIt(int i);
+
+CountIt = delegate (int end) {
+    int result;
+    result += hogehoge; //hogehogeにアクセスすることができる。hogehogeはキャプチャされている。
+    //処理
+    return result;
+}
+
+</code></pre>
+
+<h2 id="イベント">イベント</h2>
+
+<p>リスナーの登録にデリゲートを利用することができる。<br />
+ただし、複数のリスナーをマルチキャスト登録されることは問題ないが、イベントハンドラーの参照を意図せず変更されることは避けたい。
+そんため、デリゲートをマルチキャストの使用に制限するeventが存在する。</p>
+
+<p><a href="https://docs.microsoft.com/ja-jp/dotnet/standard/design-guidelines/event#feedback">イベント実装のガイドライン</a></p>
+
+<pre><code class="language-C#">
+イベント送信側のクラス（イベントハンドラー）
+
+delegate void MyEventHandler();
+
+class MyEventHandler {
+public event MyEventHandler SomeEvent;　// リスナーはこの変数にイベント発生時の処理を登録する。
+
+}
+
+</code></pre>
+
+<h2 id="名前空間">名前空間</h2>
+
+<p>名前空間が指定されていないとグローバル名前空間に変数やメソッドが登録される。
+</p>
+
+<pre><code class="language-C#">
+namespace 名前空間名 {
+    //以下の記述は全て名前空間に含まれる。
+
+}
+
+</code></pre>
+
+<p>既存の名前空間や型に別名を付けることもできる。</p>
+
+<pre><code class="language-C#">
+using エイリアス = 名前;
+
+</code></pre>
+
+<p>同一の名前空間ブロックが複数ファイルに存在しても構わない。これらは一つの名前空間として扱われる。ただし、これらは同時にコンパイルする必要がある。</p>
+
+<p>名前空間はネストすることができる。この場合ネストされた名前空間には<code>.</code> で繋いでアクセスすることができる。</p>
+
+<h3 id="名前空間エイリアス修飾子">名前空間エイリアス修飾子</h3>
+
+<pre><code class="language-C#">
+using alpha = Alpha.Utility;
+alpha.MyClass 
+//alphaという名前空間が存在し、その中にMyClassが存在すると競合する。
+//alphaは名前空間ではなくエイリアスであることを明記したい。
+alpha::MyClass//::を利用することで、alphaがエイリアスであることが明記される。
+ 
+
+</code></pre>
+
+</main>
+
+<footer>
+  
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+ 
+</footer>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+  </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>

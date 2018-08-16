@@ -6,10 +6,28 @@
     <description>Recent content in Posts on post</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 13 Aug 2018 08:25:24 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 16 Aug 2018 10:04:45 +0900</lastBuildDate>
     
 	<atom:link href="https://tomatomaster.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Csharp7</title>
+      <link>https://tomatomaster.github.io/posts/csharp7/</link>
+      <pubDate>Thu, 16 Aug 2018 10:04:45 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/csharp7/</guid>
+      <description>C#メモ デリゲート メソッド専用のインタフェースみたいなもの 戻り値と引数がデリゲート宣言と一致していれば、デリゲート変数に代入することができ</description>
+    </item>
+    
+    <item>
+      <title>C#[6]</title>
+      <link>https://tomatomaster.github.io/posts/csharp6/</link>
+      <pubDate>Tue, 14 Aug 2018 08:17:31 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/csharp6/</guid>
+      <description>C#メモ Vritual/abstract virtual virtual修飾子がつけられたメソッドは継承先で、override修飾子をつけることにより、オーバーラーイド可能 オーバーライド</description>
+    </item>
     
     <item>
       <title>C#[5]</title>
