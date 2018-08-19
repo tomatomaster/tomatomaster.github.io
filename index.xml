@@ -6,10 +6,19 @@
     <description>Recent content on post</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 17 Aug 2018 08:31:35 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 18 Aug 2018 22:41:10 +0900</lastBuildDate>
     
 	<atom:link href="https://tomatomaster.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Csharp9</title>
+      <link>https://tomatomaster.github.io/posts/csharp9/</link>
+      <pubDate>Sat, 18 Aug 2018 22:41:10 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/csharp9/</guid>
+      <description>C# unsafe CLR（共通言語ランタイム：Common Language Runtime）によって管理されないコードのことをunsafeと呼ぶ。 その一つがポインター。ポ</description>
+    </item>
     
     <item>
       <title>Csharp8</title>

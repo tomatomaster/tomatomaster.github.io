@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Csharp9 | post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://tomatomaster.github.io/">/home/post</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/post/">~/archives</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/about/">~/about</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Csharp9</span></h1>
+
+<h2 class="date">2018/08/18</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<h1 id="c">C#</h1>
+
+<h2 id="unsafe">unsafe</h2>
+
+<p>CLR（共通言語ランタイム：Common Language Runtime）によって管理されないコードのことをunsafeと呼ぶ。<br />
+その一つがポインター。ポインターは参照型のポインターを取ることはできない。</p>
+
+<pre><code class="language-C#">int *ip; //型* 変数名;
+int num = 10;
+ip = &amp;num; //numがint以外の型だったとしても警告は出さない。
+</code></pre>
+
+<p><code>&amp;</code>は変数が指す参照（変数の箱の位置）を返す。<code>*</code>は箱の中身（値）を返す。</p>
+
+<p>ポインターは構造体にも使える。構造体のメンバーにアクセスする方法として、アロー演算子が用意されている。</p>
+
+<pre><code class="language-C#">struct MyStruct {
+    public int x;
+    public int y;
+    public int sum() { return x + y; }
+}
+
+MyStruct o = new MyStruct();
+MyStruct* p;
+
+p = &amp;o;
+p-&gt;x = 10;
+p-&gt;y = 20;
+Console.WriteLine(&quot;Sum is {0}&quot;, p-&gt;sum());
+</code></pre>
+
+<p>ポインター変数に算術演算を行うことが可能。ポインターアドレスをインクリメントすると、ポインターが指すメモリ領域の隣のポインター型のアドレスを指すようになります。</p>
+
+<ol>
+<li>int(0)&lt;- Pointer | double(1) | int(2)<br /></li>
+<li>インクリメント<br /></li>
+<li>int(0) | double(1) | int(2) &lt;- Pointer<br /></li>
+</ol>
+
+<p>デクリメントを行うと逆の現象が起こる。<br />
+ポインター変数同士の引き算も可能。この場合、２つのポインター変数のアドレスに囲まれた部分のメモリ領域のデータ個数を返す。ポインター変数同士の足し算はできない。</p>
+
+<h2 id="unsafeキーワード">unsafeキーワード</h2>
+
+<p>ポインターを使用するコードはunsafeキーワードを使用する必要がある。unsafeキーワードは文単位でもメソッド単位でも使用できる。</p>
+
+<pre><code class="language-C#">//Mainメソッドの中ではポインターが使用できる。
+unsafe static void Main() {
+
+}
+</code></pre>
+
+<p>unsafeを含むコードが存在する場合コンパイル時にunsafeオプションを用いる必要がある。</p>
+
+<pre><code class="language-csc">
+## fixed
+
+fixedの使用方法は2つ存在する。
+1. ポインターが参照しているオブジェクトがGCの作用によって、移動することをさける。
+
+```C#
+ficxed(int* p = &amp;o.num) {
+    //oは移動されない。
+}
+</code></pre>
+
+<ol>
+<li>構造体に固定サイズの一次元配列を作成する場合</li>
+</ol>
+
+<p>通常構造体のメンバを定義した場合、配列の参照が埋め込まれるが、fixedを利用することで配列全体を構造体に含めることができる。<br />
+構造体のサイズが重要な意味を持つ状況化などで有用。たとえば、C#で作成したデータ構造にC#以外の言語でアクセスする場合など。<br />
+<code>fixed</code>も<code>unsafe</code>コード中で使用することができる。</p>
+
+<pre><code class="language-C#">fixed int BufferedArray[10]
+</code></pre>
+
+<h1 id="オブジェクト思考できていますか-https-www-slideshare-net-moriharuohzu-ss-14083300"><a href="https://www.slideshare.net/MoriharuOhzu/ss-14083300">オブジェクト思考できていますか？</a></h1>
+
+<p>「プリミティブ型を全てラップする。」というのはオブジェクト思考っぽいけど、若干やりすぎなような気もしてしまう。「Getter/Setterを使用しない」を意識して開発をしたことがなかったので、一度意識してみようと思う。</p>
+
+</main>
+
+<footer>
+  
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+ 
+</footer>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+  </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>
