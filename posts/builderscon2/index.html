@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Builderscon2 | post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://tomatomaster.github.io/">/home/post</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/post/">~/archives</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/about/">~/about</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Builderscon2</span></h1>
+
+<h2 class="date">2018/09/08</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<h1 id="builderscon">BuildersCon</h1>
+
+<h2 id="ファミコンエミュレータの創り方-https-builderscon-io-tokyo-2018-session-5212a273-a1b8-4458-9ce6-621d136b24f1"><a href="https://builderscon.io/tokyo/2018/session/5212a273-a1b8-4458-9ce6-621d136b24f1">ファミコンエミュレータの創り方</a></h2>
+
+<h2 id="高集積コンテナホスティングにおけるボトルネックとその解法-https-builderscon-io-tokyo-2018-session-742b60e7-dfc4-4537-9ad2-81c4307974f7"><a href="https://builderscon.io/tokyo/2018/session/742b60e7-dfc4-4537-9ad2-81c4307974f7">高集積コンテナホスティングにおけるボトルネックとその解法</a></h2>
+
+<p>間違えた。<br />
+ほんとはこっちを聞く予定だった。</p>
+
+<p>コンテナ=プロセス
+プロセスの制限を適切に設定して運用
+cgroup<br />
+capability</p>
+
+<p>Link LXCで学ぶコンテナ入門</p>
+
+<p>strace linuxのプロセスコールトレース</p>
+
+<p>slabのメモリ逼迫は</p>
+
+<p>OpenVSwitch</p>
+
+<p>既存プロセのバグ調査はデバッグツーを利用するのよ良。</p>
+
+<p>gdb
+valgrind</p>
+
+<h2 id="遠いようで身近なサウンドエンジニアリング-https-builderscon-io-tokyo-2018-session-31dcf951-8ffa-4f50-9d87-f28e90c9651d"><a href="https://builderscon.io/tokyo/2018/session/31dcf951-8ffa-4f50-9d87-f28e90c9651d">遠いようで身近なサウンドエンジニアリング</a></h2>
+
+<ul>
+<li>レコーディング
+
+<ul>
+<li>一発どり</li>
+<li>一度に全員が演奏して録音する。一つの録音に複数の楽器音が入るので後続の編集が大変。</li>
+<li>バラどり</li>
+<li>楽器が増えるほど録音が大変。一体感が出しづらい。一番最初に演奏する人は他の人の音声が聞けない。</li>
+</ul></li>
+<li>ミキシング
+
+<ul>
+<li>バラバラに撮った音をいい感じに調整する。一本のマイクで録音するとモノラル。</li>
+</ul></li>
+<li>マスタリング
+
+<ul>
+<li>ステレオ(2mix)を媒体に合わせて音質調整する。ミキシングした媒体を様々な媒体に最適化する。</li>
+<li>CD向けミキシング</li>
+<li>曲間調整/44.1KHz/16bit調整</li>
+<li>リマスター版</li>
+<li>世の中の環境に合わせてマスタリング方法を変えている。昔は低音があまり出なかったので、控えめにしていた。</li>
+</ul></li>
+</ul>
+
+<p>Youtubeに波形のHzを上げるて音声を流すビデオがある。
+音階を持つ音は波形を持っている。つまり合成で再現可能。</p>
+
+<p>サウンドエンジニアがなぜ必要か
+人間が気持ちよく聞ける音量には限界がある。</p>
+
+<p>現実の楽器の位置関係と録音の位置関係は異なる。</p>
+
+<h2 id="using-chrome-developer-tools-to-hack-your-way-into-concerts-https-builderscon-io-tokyo-2018-session-a9e04c66-219e-4d33-9315-f597b8f97829"><a href="https://builderscon.io/tokyo/2018/session/a9e04c66-219e-4d33-9315-f597b8f97829">Using Chrome Developer Tools to hack your way into concerts</a></h2>
+
+<p>テイラースイフトがチケットをファンにだけ売りたいと思い、Youtubeの視聴回数が多いユーザーにチケットを売ることに</p>
+
+<p>ネットワーク履歴
+ドメイン毎にネットワークコネクションをフィルターできる
+ネットワークが起因してるコードもinitiateから確認できる</p>
+
+<p>Ajaxリクエストの解析</p>
+
+<ol>
+<li>idを撮ってくる</li>
+<li>startにHTTP Requestを送る</li>
+<li>countにHTTP Requestを送る</li>
+</ol>
+
+<p>この場合ハックされないように、DOMをランダマイズする必要があった。</p>
+
+<p>毎回同じ規則的なDOM（場所/id名）だとパースが容易。
+馬鹿正直にデータを返さない。テイラースイフトのサイトでは処理が成功するとtrueと返ってくる。これを出さないと分からなかった。</p>
+
+<h2 id="builderscon資料-https-qiita-com-kou-sy-items-f0a97c524148d7633abe"><a href="https://qiita.com/kou-sy/items/f0a97c524148d7633abe">builderscon資料</a></h2>
+
+</main>
+
+<footer>
+  
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+ 
+</footer>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+  </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>

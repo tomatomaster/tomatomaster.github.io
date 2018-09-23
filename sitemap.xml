@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tomatomaster.github.io/posts/builderscon2/</loc>
+    <lastmod>2018-09-08T09:54:27+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tomatomaster.github.io/posts/csharp9/</loc>
     <lastmod>2018-08-18T22:41:10+09:00</lastmod>
   </url>
@@ -74,7 +79,7 @@
   
   <url>
     <loc>https://tomatomaster.github.io/posts/</loc>
-    <lastmod>2018-08-18T22:41:10+09:00</lastmod>
+    <lastmod>2018-09-08T09:54:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -85,7 +90,7 @@
   
   <url>
     <loc>https://tomatomaster.github.io/</loc>
-    <lastmod>2018-08-18T22:41:10+09:00</lastmod>
+    <lastmod>2018-09-08T09:54:27+09:00</lastmod>
     <priority>0</priority>
   </url>
   
