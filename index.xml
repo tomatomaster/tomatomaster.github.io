@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Builderscon1</title>
+      <link>https://tomatomaster.github.io/posts/builderscon1/</link>
+      <pubDate>Fri, 07 Sep 2018 12:05:33 +0900</pubDate>
+      
+      <guid>https://tomatomaster.github.io/posts/builderscon1/</guid>
+      <description>BuildersConメモ Envoy internals deep dive まず同時通訳がすごかった。ほぼ原文の漏れなくリアルタイムでガンガン通訳する。 Envoyとは Micros</description>
+    </item>
+    
+    <item>
       <title>C#[9]</title>
       <link>https://tomatomaster.github.io/posts/csharp9/</link>
       <pubDate>Sat, 18 Aug 2018 22:41:10 +0900</pubDate>

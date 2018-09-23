@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Builderscon1 | post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="https://tomatomaster.github.io/">/home/post</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/post/">~/archives</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/about/">~/about</a>
+      </li>
+      
+
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Builderscon1</span></h1>
+
+<h2 class="date">2018/09/07</h2>
+<p class="terms">
+  
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<main>
+
+
+<h1 id="buildersconメモ">BuildersConメモ</h1>
+
+<h2 id="envoy-internals-deep-dive-https-builderscon-io-tokyo-2018-session-838113b5-ea55-40ae-8ef5-eb461e7b97a2"><a href="https://builderscon.io/tokyo/2018/session/838113b5-ea55-40ae-8ef5-eb461e7b97a2">Envoy internals deep dive</a></h2>
+
+<p>まず同時通訳がすごかった。ほぼ原文の漏れなくリアルタイムでガンガン通訳する。</p>
+
+<h3 id="envoyとは">Envoyとは</h3>
+
+<p>Microservicesの開発を補助するツール。
+作成したServiceのProxyとして動作し、便利機能を色々と追加してくれる。（Sidecar Pattern）</p>
+
+<ul>
+<li>Circuit Breaker</li>
+<li>gRPC, HTTP/2対応</li>
+<li>障害監視</li>
+</ul>
+
+<h3 id="envoyが作られた背景">Envoyが作られた背景</h3>
+
+<p>世の中モノリシックなデザインからMicroservicesに移行したけど、マイクロサービスも問題がある。</p>
+
+<ul>
+<li>どこで問題が発生してるのかわかりづらい</li>
+<li>一貫したロギングが難しい</li>
+<li>多言語が採用されている場合、全ての言語に採用ライブラリが提供される保証はない。
+
+<ul>
+<li>ライブラリを採用言語にポーティングすることもあるが、リソースを圧迫する。</li>
+</ul></li>
+</ul>
+
+<h2 id="開発現場で役立たせるための設計原則とパターン-https-builderscon-io-tokyo-2018-session-34027adb-d0a4-4dd7-9a44-8297a087dc44"><a href="https://builderscon.io/tokyo/2018/session/34027adb-d0a4-4dd7-9a44-8297a087dc44">開発現場で役立たせるための設計原則とパターン</a></h2>
+
+<p>設計抽象的な話になりがち<br />
+責務ってこのxxxなクラスはxxxな責務です！と言われたらまぁそうと言わざるを得ない</p>
+
+<p>設計。複数の分割構造の選択肢から適切な構造を選び出すアクティビティ。デザインパターンは分割カタログ。</p>
+
+<p>SOLIDの説明</p>
+
+<p>設計原則を用いるとセルフチェックができる。</p>
+
+<p>Single Responsibility</p>
+
+<p>責務は仕様変更が発生するまでわからない、
+設計対象となる問題をよく観察して、変更理由を知ることが大事。どこがかわりやすいポイントなのかしることが大事。</p>
+
+<p>新しい学びは少なかったが、新人に研修をするときの良いサンプルになった気がする。</p>
+
+<h2 id="事前知識なしで理解する-静的検査のいろは-https-builderscon-io-builderscon-tokyo-2018-session-0a3ee8c0-44ce-4cb9-9199-05b350887d79"><a href="https://builderscon.io/builderscon/tokyo/2018/session/0a3ee8c0-44ce-4cb9-9199-05b350887d79">事前知識なしで理解する、静的検査のいろは</a></h2>
+
+<p><a href="https://speakerdeck.com/orgachem/introduction-about-static-analysis-without-previous-knowledge">Slide</a></p>
+
+<h2 id="javacardの世界-https-builderscon-io-tokyo-2018-session-c9420e29-489d-4abe-b8d7-96d1e4d61b47"><a href="https://builderscon.io/tokyo/2018/session/c9420e29-489d-4abe-b8d7-96d1e4d61b47">JavaCardの世界</a></h2>
+
+<p>JavaCard</p>
+
+<p>あの金色のチップ</p>
+
+<ul>
+<li>クレカ</li>
+<li>SIM</li>
+</ul>
+
+<p>SmartCard ISO7816</p>
+
+<ul>
+<li>Intelligent Smart Card &lt;- JavaCard</li>
+<li>MemoryCard &lt;- 単なるストレージ</li>
+</ul>
+
+<p>CardはAPDU(Application Data Unit)というプロトコルで外界と通信する。</p>
+
+<p>UICC<br />
+Inteligent Smart Cardの一種　　
+ある程度の演算ができる</p>
+
+<p>1M〜5M Hz
+CPU
+ROM
+EPROM(書き換えできる)
+RAM
+普通にCPU</p>
+
+<p>Core O.S(Docker関係ない)
+ファイルシステムもある。普通にファイルを取り扱える。</p>
+
+<p>JCRE(Java Card Runtime Edition)
+機能はかなり制限されており、下記は使えない。
+動的クラスローディング
+ファイナライズ
+スレッド
+大きなプリミティブ型(char, float)
+etc&hellip;</p>
+
+<p>GCはカードの実装次第</p>
+
+<p>基本インスタンス変数はEPROMに書き込まれる。
+電源が切れてもインスタンス変数のデータは残る。</p>
+
+<p>RAMはめっちゃ小さい(8byte)
+本当に一時的なデータのみ入れる</p>
+
+<p>JVMは一生動き続ける
+電源供給がない場合は無限のクロックサイクル。完全に一時停止しているような状況になっている。</p>
+
+<p>Java CardはAppletを同時に実行はできないが、同時に起動させておくことはできる。複数のアプレットを選択して起動さ焦る。</p>
+
+<p>EPROMの寿命は100,000writes</p>
+
+<p>開発サイクル</p>
+
+<p>普通のJavaを書いてConverterかける。</p>
+
+<p>How to write  a Java Card applet</p>
+
+<p>Javaカードはどこでかえるのか</p>
+
+<p>Amazon/Aliexple</p>
+
+<p>どんなアプリが動いているのか<br />
+アイデンティフィケーションの処理<br />
+SIM認証系<br />
+通信暗号化</p>
+
+<p>Q JavaCardの未来は？<br />
+A クレカ/携帯が死滅しなければ</p>
+
+<p>Q JavaCardのコードを検索したいときは？<br />
+A javacard.frameworkはぜったい使われている</p>
+
+<p>Q SmartCardはなぜJavaなのか<br />
+A SmartCard登場当初はC, Lisp実装もあったらしいが自然淘汰の結果JavaCardがのこった。セキュリティレベルが高かったから？</p>
+
+<p>Q EPROM破壊を防ぐための独自テクはあるか？<br />
+A 洗練されたテクはない。基本耐久テスト。壊れるやつはテストですぐ壊れる。</p>
+
+<h2 id="lld-開発ツールの主要コンポーネントの1つをスクラッチから作成した話-https-builderscon-io-tokyo-2018-session-a5d70539-6cb2-4d9c-a472-3e48f2eb3183"><a href="https://builderscon.io/tokyo/2018/session/a5d70539-6cb2-4d9c-a472-3e48f2eb3183">lld − 開発ツールの主要コンポーネントの1つをスクラッチから作成した話</a></h2>
+
+<p>リンカの基本概念</p>
+
+<p>catして全体を作って、
+断片化している時には決定できなかったメモリ配列を決定する。他のファイルで定義されている関数。</p>
+
+<p>リロケーション
+リンカの仕事</p>
+
+<p>Chrome
+のリロケーション13000000
+1μ秒多く費やすと合計で13秒遅くなる</p>
+
+<p>作りはじめた当初
+全く動かない</p>
+
+<p>徐々に動かす
+エラーをはかない実行ファイル
+単一ファイル
+複数ファイル
+etc&hellip;
+HelloWorldを動かすまで数ヶ月</p>
+
+<p>ターゲットの実行環境毎に色々異なる。
+概念は同じだが</p>
+
+<p>実行環境に依存しない中間コードに直そうとすると無理がでた。</p>
+
+<p>書き直し決意
+文句言われたけど、文句言ってる人は書いてるわけじゃないので書き直し開始</p>
+
+<p>書き直したらめっちゃ早くなる</p>
+
+<p>書き直した結果、賛同する新しい仲間が増えてくる</p>
+
+<p>リデザインのポイント</p>
+
+<ul>
+<li>難しくしすぎない</li>
+<li>自然と早くなるようなものにする</li>
+<li>データ構造が重要</li>
+<li>こうなったら早いというデータ構造に自然と作っていく。</li>
+</ul>
+
+<p>マルチターゲット</p>
+
+<p>中間表現を導入する
+ダメ</p>
+
+<p>全ターゲットでデザインを共有するが、コードは共有しない。
+ターゲット毎に似たようなコードを書かなくてはいけないが、似ているだけで厳密には違う。これを共通化すると大変だった。</p>
+
+<p>早くてシンプルなコードを書くために</p>
+
+<ul>
+<li>データ構造</li>
+<li>2回書く</li>
+
+<li><p>最適化する箇所を最小化する</p></li>
+
+<li><p>Q 2度書き直しするといいということだけど、前の実装に引っ張られる何か心がけはあるか。</p></li>
+
+<li><p>A 答えになっていないが、問題点を試行錯誤的に潰しているだけ</p></li>
+
+<li><p>Q 次の目標は</p></li>
+
+<li><p>A Linuxディストリビューション全体が10秒くらいでビルドできたらいいですね。</p></li>
+</ul>
+
+<p>慣習に従ったReasonがない実装は積極的に拒否する。そんなパッチが来ても入れない。慣習が間違っていることは多々ある。全てに理由と理屈を求める。</p>
+
+</main>
+
+<footer>
+  
+<script>
+(function() {
+  function center_el(tagName) {
+    var tags = document.getElementsByTagName(tagName), i, tag;
+    for (i = 0; i < tags.length; i++) {
+      tag = tags[i];
+      var parent = tag.parentElement;
+      
+      if (parent.childNodes.length === 1) {
+        
+        if (parent.nodeName === 'A') {
+          parent = parent.parentElement;
+          if (parent.childNodes.length != 1) continue;
+        }
+        if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+      }
+    }
+  }
+  var tagNames = ['img', 'embed', 'object'];
+  for (var i = 0; i < tagNames.length; i++) {
+    center_el(tagNames[i]);
+  }
+})();
+</script>
+ 
+</footer>
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+  </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>
